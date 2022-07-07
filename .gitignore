@@ -1,0 +1,28 @@
+# venv
+venv/
+.venv/
+
+#pycache
+*.pyc 
+**/__pycache__
+.idea/
+__pycache__/
+
+# vs code ws
+/vscode
+*.code-workspace
+.vscode
+
+# db files
+db_dir/
+*.db
+
+
+# mac
+.DS_Store
+
+# pycharm
+/**/.idea/*
+.idea
+/.idea/*
+.idea/*
