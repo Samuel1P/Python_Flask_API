@@ -1,15 +1,52 @@
-from flask import Flask
-from flask_restful import Resource, Api
+from flask import Flask, request
+
 
 app = Flask(__name__)
-api = Api(app)
 
-class Student(Resource):
-    def get(self, name):
-        return {"message": f"your name is {name}"}
+
+stores = [
+    {
+        "name": "Grocery_Store",
+        "items": [
+            {
+                "name" : "Saffola Cooking Oil",
+                "mrp" : 120.0,
+                "quantity": "1 Litre"
+            }
+        ]
+        
+    },
+    {
+        "name": "Electrical_Store",
+        "items": [
+            {
+                "name" : "Copper Wire",
+                "mrp" : 120.0,
+                "quantity": "1 Meter"
+            }
+        ] 
+    }
+]
+
+
+@app.get("/health")
+def health():
+    return f"Well and good."
+
+@app.get("/say_hello/<name>")
+def hello(name):
+    return f"Hello, {name}!"
+
+@app.get("/store")
+def get_stores():
+    return {"stores": stores}
+
+@app.post("/store")
+def add_stores():
+    request_data = request.get_json()
+    new_store = {"name": request_data["name"], "items":[]}
+    stores.append(new_store)
+    return new_store, 201
     
-
-api.add_resource(Student, "/name/<string:name>")
-
-
+    
 app.run(port=8000)
