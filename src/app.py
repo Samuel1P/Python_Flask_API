@@ -41,12 +41,35 @@ def hello(name):
 def get_stores():
     return {"stores": stores}
 
+@app.get("/store/<store_name>")
+def get_single_store(store_name):
+    for store in stores:
+        if store["name"] ==store_name: 
+            return store, 200
+    else:
+        return {"Error": "Store Not Found"}, 400
+
 @app.post("/store")
 def add_stores():
     request_data = request.get_json()
     new_store = {"name": request_data["name"], "items":[]}
     stores.append(new_store)
     return new_store, 201
-    
-    
+
+
+@app.put("/store/<store_name>")
+def add_item_to_store(store_name):
+    request_data = request.get_json()
+    new_item = request_data["items"]
+    print(new_item)
+    for store in stores:
+        if store["name"] ==store_name:
+            print(store["name"], store_name) 
+            store["items"].append(new_item)
+            return store, 200
+    else:
+        return {"Error": "Store Not Found"}, 400 
+
+
+
 app.run(port=8000)
