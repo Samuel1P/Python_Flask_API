@@ -70,6 +70,20 @@ def add_item_to_store(store_name):
     else:
         return {"Error": "Store Not Found"}, 400 
 
-
+@app.get("/store/<store_name>/<item_name>")
+def get_item_from_store(store_name, item_name):
+    item = ""
+    for store in stores:
+        if store["name"] ==store_name:
+            print(store["name"], store_name) 
+            items_in_target_store = store["items"]
+            break
+    else:
+        return {"Error": "Store {} Not Found".format(store_name)}, 404 
+    for item in items_in_target_store:
+        if item["name"] == item_name:
+            return item, 200
+    else:
+        return {"Error": "Item {} Not Found".format(item_name)}, 404  
 
 app.run(port=8000)
