@@ -9,8 +9,18 @@ def create_dummy_store():
     store_name = "dummy_store"
     new_store_payload = {"name": store_name}
     resp = requests.post(endpoint+"store", json=new_store_payload)
+    store_data = resp.json()    
     assert resp.status_code == 201
-    return store_name 
+    return store_data
+
+@fixture
+def create_dummy_item():
+    item_name = "dummy_item_create"
+    new_item_payload = {"name": item_name}
+    resp = requests.post(endpoint+"items", json=new_item_payload)
+    item_data = resp.json()    
+    assert resp.status_code == 201
+    return item_data
 
 @fixture
 def dummy_store_with_item(create_dummy_store):
