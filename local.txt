@@ -1,3 +1,7 @@
 /Users/samuel.ip/.pyenv/versions/3.10.4/envs/flask_project_3.10.3_venv/bin/python /Users/samuel.ip/Documents/Workspace/Learning_Workspace/Python_Flask_API/src/app.py
 
 docker run -p 8000:8000 rest-api-flask-python
+
+docker build -t rest-api-flask-python .
+
+export FLASK_DEBUG=1

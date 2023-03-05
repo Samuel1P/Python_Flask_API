@@ -49,7 +49,19 @@ class Test_Store:
         store_id = "non_existent_store_id"
         resp2 = requests.get(endpoint+"store"+"/"+store_id)
         assert resp2.status_code == 404
-        
+
+    def test_update_store(self):
+        pass
+    
+    def test_update_non_existent_store(self):
+        pass
+    
+    def test_delete_store(self):
+        pass
+    
+    def test_delete_non_existent_store(self):
+        pass
+ 
     def test_get_all_items(self):
         resp = requests.get(endpoint+"store")
         assert resp.status_code == 200
@@ -79,6 +91,19 @@ class Test_Store:
         store_id = "non_existent_item_id"
         resp2 = requests.get(endpoint+"items"+"/"+store_id)
         assert resp2.status_code == 404
+        
+        
+    def test_update_item(self):
+        pass
+    
+    def test_update_non_existent_item(self):
+        pass
+    
+    def test_delete_item(self):
+        pass
+    
+    def test_delete_non_existent_item(self):
+        pass
 """
     
     def test_add_item_to_store(self, create_dummy_store):
